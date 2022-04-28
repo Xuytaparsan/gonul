@@ -50,7 +50,7 @@ async def live(client: Client, message: Message):
     
 #musiqi əmri#
 
-@bot.on_message(filters.command("bul") & ~filters.edited)
+@bot.on_message(filters.command("song") & ~filters.edited)
 def bul(_, message):
     query = " ".join(message.command[1:])
     m = message.reply("<b> Axtarılır ... 🔍</b>")
