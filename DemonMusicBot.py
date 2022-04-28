@@ -28,7 +28,7 @@ bot = Client(
 
 @bot.on_message(filters.command(['start']))
 def start(client, message):
-    demon = f'👋 Salam {message.from_user.mention}\n\nℹ️ Mən musiqi yükləmə botuyam, istədiyiniz musiqini yükləyə bilərəm\n\n ✅ Yardım üçün /help  Yazın
+    demon = f'👋 Salam {message.from_user.mention}\n\nℹ️ Mən musiqi yükləmə botuyam, istədiyiniz musiqini yükləyə bilərəm\n\n ✅ Yardım üçün /help  Yazın'
     message.reply_text(
         text=demon, 
         quote=False,
