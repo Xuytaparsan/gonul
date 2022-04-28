@@ -17,7 +17,7 @@ from pyrogram.types import (
 #config#
 
 bot = Client(
-    'DemonBot',
+    'FidowMusicBot',
     bot_token = Config.BOT_TOKEN,
     api_id = Config.API_ID,
     api_hash = Config.API_HASH
@@ -33,7 +33,7 @@ def start(client, message):
         quote=False,
         reply_markup=InlineKeyboardMarkup(
             [[
-                    InlineKeyboardButton('Rəsmi Kanal ✅', url='https://t.me/Botsinator'),
+                    
                     InlineKeyboardButton('Playlist 🎵', url=f'https://t.me/{Config.PLAYLIST_NAME}')
                   ],[
                     InlineKeyboardButton('Sahib 👨🏻‍💻', url=f'T.me/{Config.BOT_OWNER}')
@@ -52,7 +52,7 @@ def help(client, message):
         quote=False,
         reply_markup=InlineKeyboardMarkup(
             [[
-                    InlineKeyboardButton('Rəsmi Kanal ✅', url='https://t.me/Botsinator'),
+                    
                     InlineKeyboardButton('Playlist 🎵', url=f'https://t.me/{Config.PLAYLIST_NAME}')
                   ],[
                     InlineKeyboardButton('Sahib 👨🏻‍💻', url=f'T.me/{Config.BOT_OWNER}')
