@@ -7,8 +7,8 @@
         "Music",
         "Bot"
     ],
-    "repository": "https://github.com/ByFragment/DemonMusic-Demo-",
-    "success_url": "https://github.com/ByFragment/DemonMusic-Demo-",
+    "repository": "https://github.com/",
+    "success_url": "https://github.com/",
     "image": "heroku/python",
     "formation": {
         "worker": {
@@ -19,12 +19,12 @@
     "env": {
         "API_ID": {
             "description": "my.telegram.org saytından ala bilərsiniz.",
-            "value": "8953338",
+            "value": "",
             "required": true
         },
         "API_HASH": {
             "description": "my.telegram.org saytından ala bilərsiniz.",
-            "value": "fe21f223cb02d8f7c1cbda651f553a45",
+            "value": "",
             "required": true
         },
         "BOT_TOKEN": {
@@ -44,7 +44,7 @@
         },
         "BOT_OWNER": {
             "description": "Öz kullanıcı adınızı @ bu işarə olmadan yazın.",
-            "value": "HuseynH",
+            "value": "",
             "required": true
         },
         "BOT_USERNAME": {
