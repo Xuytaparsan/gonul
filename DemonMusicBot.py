@@ -51,7 +51,7 @@ async def live(client: Client, message: Message):
 #musiqi əmri#
 
 @bot.on_message(filters.command("song") & ~filters.edited)
-def bul(_, message):
+def song(_, message):
     query = " ".join(message.command[1:])
     m = message.reply("<b> Axtarılır ... 🔍</b>")
     ydl_ops = {"format": "bestaudio[ext=m4a]"}
