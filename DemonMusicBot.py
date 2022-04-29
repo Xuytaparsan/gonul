@@ -26,9 +26,8 @@ bot = Client(
 
 #start mesajı
 
-@Client.on_message(filters.command(['start']))
-async def start(bot: Client, message: Message):
-    await demon.send_photo(photo="https://telegra.ph/file/5ee3fb631295ef692635d.jpg")
+@bot.on_message(filters.command(['start']))
+def start(client, message):
     demon = f'👋 **Salam** {message.from_user.mention}\n\n**ℹ️ Mən musiqi, video yükləmək üçün yaradılmış botam və istədiyiniz mahnının sözlərini məndən öyrənə bilərsiniz 😁**\n\n**✅ Botun istifadə qaydasını öyrənmək üçün** /help **əmrindən istifadə edin**'
     message.reply_text(
         text=demon, 
