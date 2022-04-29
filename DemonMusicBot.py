@@ -107,7 +107,7 @@ def bul(_, message):
         m.delete()
         bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=rep, performer="@MusicAzBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
-        m.edit('**⚠️ Gözlənilməyən xəta yarandı.**\n**Xahiş edirəm xətanı sahibimə xəbərdar et!**'
+        m.edit('**⚠️ Gözlənilməyən xəta yarandı.**\n**Xahiş edirəm xətanı sahibimə xəbərdar et!**')
         print(e)
 
     try:
