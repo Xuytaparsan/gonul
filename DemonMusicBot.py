@@ -28,25 +28,28 @@ bot = Client(
 
 @bot.on_message(filters.command(['start']))
 def start(client, message):
-    demon = f'👋 **Selam** {message.from_user.mention}\n\n**ℹ️ Ben müzik indirme botuyum istediğin müziği indirebilirim**\n\n**✅ Yardım için** /help **komutunu kullanın**'
+    demon = f'👋 **Salam** {message.from_user.mention}\n\n**ℹ️ Mən musiqi, video yükləmək üçün yaradılmış botam və istədiyiniz mahnının sözlərini məndən öyrənə bilərsiniz 😁**\n\n**✅ Botun istifadə qaydasını öyrənmək üçün** /help **əmrindən istifadə edin**'
     message.reply_text(
         text=demon, 
         quote=False,
         reply_markup=InlineKeyboardMarkup(
             [[
-                    InlineKeyboardButton('Resmi Kanal 📣', url='https://t.me/emilyutagresmi'),
-                  ],[
+                    InlineKeyboardButton('Rəsmi Kanal ✅', url=''),
                     InlineKeyboardButton('Playlist 🎵', url=f'https://t.me/{Config.PLAYLIST_NAME}')
+                  ],[
+                    InlineKeyboardButton('Sahib 👨🏻‍💻', url=f'T.me/{Config.BOT_OWNER}')
                 ]
             ]
         )
     )
     
+
+ 
 #kömək mesajı
 
 @bot.on_message(filters.command(['help']))
 def help(client, message):
-    helptext = f'**Müzik indirmek için /bul komutunu kullabilirsin ⤵️**\n\n**Örnek:**\n**1.** `/bul gece mavisi`\n**2.** `/bul https://youtu.be/qLXUa89Q5WI`\n\n**İndirdiğin müzikler [𝑆𝑒𝑛𝑖𝑛 𝑆̧𝑎𝑟𝑘𝑖𝑛](https://t.me/seninsarkinn) kanalında paylaşılacaktır.**'
+    helptext = f'**Musiqi yükləmək üçün /find əmrindən istifadə edə bilərsiniz ⬇️**\n\n**Məsələn:**\n**1.** `/gecə yarısı mavisini tap`\n**2.** `/ tap https://youtu.be/qLXUa89Q5WI`\n\n**Endirdiyiniz musiqi [Sənin](https://t.me/senin'sarkinn) saytında paylaşılacaq.
     message.reply_text(
         text=helptext, 
         quote=False,
