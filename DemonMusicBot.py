@@ -18,7 +18,7 @@ from pyrogram.types import (
 #config#
 
 bot = Client(
-    'DemonBot',
+    'MusicAzBot',
     bot_token = Config.BOT_TOKEN,
     api_id = Config.API_ID,
     api_hash = Config.API_HASH
@@ -49,31 +49,33 @@ def start(client, message):
 
 @bot.on_message(filters.command(['help']))
 def help(client, message):
-    helptext = f'**Musiqi yükləmək üçün /find əmrindən istifadə edə bilərsiniz ⬇️**\n\n**Məsələn:**\n**1.** `/gecə yarısı mavisini tap`\n**2.** `/ tap https://youtu.be/qLXUa89Q5WI`\n\n**Endirdiyiniz musiqi [Sənin](https://t.me/senin'sarkinn) saytında paylaşılacaq.
+    helptext = f'**Musiqi yükləmək üçün /song əmrindən istifadə edə bilərsiniz ⤵️**\n\n**Məsələn:**\n**1.** `/song Ayaz Babayev - Sən Mənlə`\n**2.** `/song https://youtu.be/qLXUa89Q5WI`\n\n**/alive - Botun işlək olduğunu yoxlamaq üçün əmrdir. Yalnız Bot sahibi istifadə edə bilər.**\n\n**⚠️ Botun qruplarda işləyə bilməsi üçün admin olmalıdır !**'
     message.reply_text(
         text=helptext, 
         quote=False,
         reply_markup=InlineKeyboardMarkup(
             [[
-                    InlineKeyboardButton('Resmi Kanal 📣', url='https://t.me/emilyutagresmi'),
-                  ],[
+                    InlineKeyboardButton('Rəsmi Kanal ✅', url=''),
                     InlineKeyboardButton('Playlist 🎵', url=f'https://t.me/{Config.PLAYLIST_NAME}')
+                  ],[
+                    InlineKeyboardButton('Sahib 👨🏻‍💻', url=f'T.me/{Config.BOT_OWNER}')
                 ]
             ]
         )
     )
+
 #alive mesaji#
 
 @bot.on_message(filters.command("alive") & filters.user(Config.BOT_OWNER))
 async def live(client: Client, message: Message):
-    livemsg = await message.reply_text('`Merhaba Sahip Bey 🖤`')
+    livemsg = await message.reply_text('`Mən Qoz Kimi İşləyirəm 😎`')
     
 #musiqi əmri#
 
-@bot.on_message(filters.command("bul") & ~filters.edited)
+@bot.on_message(filters.command("song") & ~filters.edited)
 def bul(_, message):
     query = " ".join(message.command[1:])
-    m = message.reply("<b>Şarkınız Aranıyor ... 🔍</b>")
+    m = message.reply("<b>Musiqi Axtarılır ... 🔍</b>")
     ydl_ops = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -86,26 +88,26 @@ def bul(_, message):
         duration = results[0]["duration"]
 
     except Exception as e:
-        m.edit("<b>❌ Üzgünüm şarkı bulunamadı.\n\n Lütfen başka şarkı ismi söyleyin.</b>")
+        m.edit("İstədiyiniz musiqi tapılmadı 😔")
         print(str(e))
         return
-    m.edit("<b>📥 İndirme İşlemi Başladı...</b>")
+    m.edit("`📥 Musiqini tapdım və endirirəm.`")
     try:
         with yt_dlp.YoutubeDL(ydl_ops) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"**🎶 İndirildi. İyi Dinlemeler [𝑆𝑒𝑛𝑖𝑛 𝑆̧𝑎𝑟𝑘𝑖𝑛](https://t.me/seninsarkinn) 🎶.**"
+        rep = f"🎵 Yüklədi [Music Bot](https://t.me/{Config.BOT_USERNAME})"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(float(dur_arr[i])) * secmul
             secmul *= 60
-        m.edit("📤 Yükleniyor..")
-        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="@emilyutagresmi")
+        m.edit("📤 Yüklənir..")
+        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="MusicAzPlaylist")
         m.delete()
-        bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=rep, performer="@Seninsarkin_bot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+        bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=rep, performer="@MusicAzBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
-        m.edit("<b>❌ Hatanın, düzelmesini bekleyiniz.</b>")
+        m.edit('**⚠️ Gözlənilməyən xəta yarandı.**\n**Xahiş edirəm xətanı sahibimə xəbərdar et!**'
         print(e)
 
     try:
